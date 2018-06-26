@@ -1,4 +1,7 @@
 <!--The content below is only a placeholder and can be replaced.-->
+<header>
+  <a [routerLink]="['/']"> </a>
+</header>
 <div style="text-align:center">
 
   <!--login-->
@@ -30,9 +33,9 @@
   <div *ngIf="login == true">
     <div class="wrapper">
       <!-- Sidebar  -->
-      <nav id="sidebar">
+      <nav id="sidebar" class="active">
         <div class="sidebar-header">
-          <h3>Bootstrap Sidebar</h3>
+          <a href="/">Bootstrap</a>
           <strong>BS</strong>
         </div>
 
@@ -100,7 +103,7 @@
               </button>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item active" href="#">Login</a>
-                <a class="dropdown-item " href="#">Perfil</a>
+                <a class="dropdown-item " href="/perfil">Perfil</a>
                 <a class="dropdown-item" href="#" (click)="login = !login">logout</a>
               </div>
             </div>
@@ -111,8 +114,16 @@
         <!--contenido-->
         <div text-center class="container-fluid">
           Contenido
+          <router-outlet></router-outlet>
         </div>
         <!--end contenido-->
+
+        <!--footer-->
+        <footer class="container-fluid text-center " style="position: absolute; bottom: 0%;">
+          <p>Alex Ortega</p>
+        </footer>
+        <!--end footer-->
+      
       </div>
     </div>
   </div>

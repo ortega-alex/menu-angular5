@@ -193,7 +193,7 @@ a[data-toggle="collapse"] {
     #sidebar .sidebar-header strong {
         display: none;
     }
-    #sidebar.active .sidebar-header h3 {
+    #sidebar.active .sidebar-header a {
         display: none;
     }
     #sidebar.active .sidebar-header strong {
@@ -309,7 +309,7 @@ ul ul a {
 #sidebar .sidebar-header strong {
     display: none;
 }
-#sidebar.active .sidebar-header h3 {
+#sidebar.active .sidebar-header a {
     display: none;
 }
 #sidebar.active .sidebar-header strong {
