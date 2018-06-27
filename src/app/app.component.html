@@ -5,32 +5,56 @@
 <div style="text-align:center">
 
   <!--login-->
-  <div *ngIf="login == false">
+  <div *ngIf="viewMain == false && registrando == false">
     <div class="container">
       <div class="card card-container">
         <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
         <p id="profile-name" class="profile-name-card"></p>
-        <form class="form-signin">
+        <form class="form-signin" #loginForm="ngForm">
           <span id="reauth-email" class="reauth-email"></span>
-          <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-          <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+          <input type="email" id="email" [(ngModel)]="user.email" name="email" #email="ngModel" class="form-control" placeholder="Email address"
+            required autofocus>
+          <input type="password" class="form-control" [(ngModel)]="user.password" id="password" name="password" #password="ngModel"
+            placeholder="Password" required>
           <div id="remember" class="checkbox">
             <label>
               <input type="checkbox" value="remember-me"> Remember me
             </label>
           </div>
-          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="login = !login">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="login(user)" [disabled]="!loginForm.form.valid">Sign in</button>
         </form>
+        <button class="btn btn-lg btn-dark btn-block btn-signin" type="button" (click)="registro()">Registro</button>
         <a href="#" class="forgot-password">
           Forgot the password?
         </a>
+        <div *ngIf="messangeError">
+          <p>{{messangeError}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="viewMain == false && registrando == true">
+    <div class="container">
+      <div class="card card-container">
+        <form class="form-signin" #registroForm="ngForm">
+          <input type="name" id="name" [(ngModel)]="user.name" name="name" #name="ngModel" class="form-control" placeholder="Name"
+            required autofocus>
+          <input type="email" id="email" [(ngModel)]="user.email" name="email" #email="ngModel" class="form-control" placeholder="Email address"
+            required autofocus>
+          <input type="password" class="form-control" [(ngModel)]="user.password" id="password" name="password" #password="ngModel"
+            placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block btn-signin" type="submit" (click)="setUsuario(user)" [disabled]="!registroForm.form.valid">Registro</button>
+        </form>
+        <div *ngIf="messangeError">
+          <p>{{messangeError}}</p>
+        </div>
       </div>
     </div>
   </div>
   <!--end login-->
 
   <!--menu-->
-  <div *ngIf="login == true">
+  <div *ngIf="viewMain == true">
     <div class="wrapper">
       <!-- Sidebar  -->
       <nav id="sidebar" class="active">
@@ -104,7 +128,7 @@
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item active" href="#">Login</a>
                 <a class="dropdown-item " href="/perfil">Perfil</a>
-                <a class="dropdown-item" href="#" (click)="login = !login">logout</a>
+                <a class="dropdown-item" href="#" (click)="logout()">logout</a>
               </div>
             </div>
           </nav>
@@ -113,7 +137,7 @@
 
         <!--contenido-->
         <div text-center class="container-fluid">
-          Contenido
+          <!--Contenido-->
           <router-outlet></router-outlet>
         </div>
         <!--end contenido-->
@@ -123,7 +147,7 @@
           <p>Alex Ortega</p>
         </footer>
         <!--end footer-->
-      
+
       </div>
     </div>
   </div>
