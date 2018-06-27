@@ -77,8 +77,7 @@ export class AppComponent {
   }
 
   public registro(){
-    this.registrando = !this.registrando;
-    
+    this.registrando = !this.registrando;    
   }
 
   public setUsuario(arg : any){

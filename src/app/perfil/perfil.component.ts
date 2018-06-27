@@ -11,7 +11,6 @@ export class PerfilComponent implements OnInit {
 
   private readonly NOMBRE_ENTIDAD: string = "usuario";
 
-  // private usuairo : string = "Alex Ortega";
   private usuario: any;
   private usuarios: Array<any> = [];
 
@@ -31,5 +30,4 @@ export class PerfilComponent implements OnInit {
   ngOnInit() {
     this.getEntity();
   }
-
 }
